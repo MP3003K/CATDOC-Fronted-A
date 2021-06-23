@@ -1,0 +1,58 @@
+<div class="container alinear">
+    <div class="mt-3 mr-1">
+      <form>
+          <div class="form-group">
+            <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+            <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+            <label for="exampleInputEmail1" style="font-weight: bold;"
+            >Nombre</label>
+            <input hidden [(ngModel)]="lineaModel.id_linea" name="id_linea" class="form-control">
+            <input id="nombre" [(ngModel)]="lineaModel.nombre" name="nombre" class="form-control"  placeholder="Nombre de Línea">
+            <small id="emailHelp" class="form-text text-muted">Ejemplo: Gestión de TI.</small>
+          </div>
+          <div style="display: flex">
+            <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+          </div>
+          <div>
+            <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
+          </div>
+      </form>
+    </div>
+    
+    <div class="container mt-3" style="max-width: 60%; flex-wrap: nowrap;">
+      <table id="datatable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th hidden></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let linea of lineas; let i = index" >
+            <td> {{i+1}} </td>
+            <td hidden > {{linea.ID_LINEA}} </td>
+            <td> {{linea.NOMBRE}} </td>
+            <td> {{linea.ESTADO}} </td>
+            <td>
+                <button class="btn btn-success" (click)="cargarRol(linea.ID_LINEA)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="delLinea(linea.ID_LINEA)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  
+  </div>

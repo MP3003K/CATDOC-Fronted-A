@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card" style="width: 18erm">
+        <h5 class="card-header">Registrar Criterios</h5>
+        <div class="card-body">
+          <label for="inputState">Información De la Rubrica</label>
+          <div *ngFor="let rubrica of rubrica">
+            <h6>Rubrica :</h6>
+            <p>{{ rubrica.curso }}</p>
+            <h6>Peso Rúbrica :</h6>
+            <p>{{ rubrica.peso }} %</p>
+          </div>
+          <form #tipoForm="ngForm" (ngSubmit)="addCriterio(tipoForm)">
+            <br />
+
+            <input type="hidden" name="id_rubricas" [(ngModel)]="id" />
+            <label for="inputState">Ingresar Criterio : </label>
+            <input
+              type="text"
+              matInput
+              id="ng"
+              placeholder="Criterio"
+              name="nombre"
+              [(ngModel)]="Rubrica.selectedCriterio.nombre"
+              class="form-control"
+            />
+            <br />
+            <label for="inputState">Ingresar Peso : </label>
+            <input
+              type="number"
+              matInput
+              id="ng"
+              placeholder="Peso"
+              name="peso"
+              class="form-control"
+              [(ngModel)]="Rubrica.selectedCriterio.peso"
+              class="form-control"
+            />
+            <br />
+            <button
+              mat-raised-button
+              color="primary"
+              class="btn btn-primary upeu"
+            >
+              Guardar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Criterios</th>
+            <th>Peso</th>
+            <th>Registrar Niveles</th>
+            <th>Eliminar</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let criterio of Rubrica.criterio; let indice = index">
+            <td>{{ indice + 1 }}</td>
+            <td>{{ criterio.nombre }}</td>
+            <td>{{ criterio.peso }} %</td>
+            <td>
+              <a
+                [routerLink]="[
+                  '/rubricas/indicador/nivellogro',
+                  criterio.id_criterio
+                ]"
+              >
+                <a class="btn btn-primary">Registrar Niveles</a>
+              </a>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteCriterio()">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-success" (click)="editCriterio()">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

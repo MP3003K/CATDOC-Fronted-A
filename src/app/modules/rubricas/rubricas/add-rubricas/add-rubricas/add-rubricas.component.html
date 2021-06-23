@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card" style="width: 18erm">
+        <h5 class="card-header">Registrar Rúbrica</h5>
+        <div class="card-body">
+          <form #tipoForm="ngForm" (ngSubmit)="addRubrica(tipoForm)">
+            <div class="card-body">
+              <input
+              
+                type="hidden"
+                name="id_carga"
+                [(ngModel)]="id_carga"
+              />
+              <label for="inputState">Seleccione Curso</label>
+              <select
+                (change)="ChooseCurso($event.target.value)"
+                class="form-control"
+                id="inputState"
+                class="form-control"
+              >
+                <option selected>Elegir...</option>
+                <option
+                  *ngFor="let curso of Rubrica.curso"
+                  [value]="curso.id_curso_proyecto"
+                >
+                  {{ curso.curso }}
+                </option>
+              </select>
+            </div>
+            <br />
+
+            <div class="card-body">
+              <label for="inputState">Ingresar Peso Rúbrica</label>
+              <input
+                type="number"
+                matInput
+                id="ng"
+                placeholder="Ingrese Peso"
+                name="peso"
+                class="form-control"
+                [(ngModel)]="Rubrica.selectedRubri.peso"
+              />
+              <br />
+              <button
+                mat-raised-button
+                color="primary"
+                class="btn btn-primary upeu"
+              >
+                Guardar
+              </button>
+
+            
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <button  class="btn btn-primary upeu" [routerLink]="['/rubricas/vista/admin/', id]" routerLinkActive="router-link-active" > Vista Administrativa General</button>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Curso</th>
+            <th>peso</th>
+            <th>Registrar Criterios</th>
+            <th>Eliminar</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rubrica of Rubrica.rubrica; let indice = index">
+            <td>{{ indice + 1 }}</td>
+            <td>{{ rubrica.curso }}</td>
+            <td>{{ rubrica.peso }} %</td>
+            <td>
+              <a [routerLink]="['/rubricas/indicador/', rubrica.id_rubricas]">
+                <a class="btn btn-primary">Registrar Criterios</a>
+              </a>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteRubrica(rubrica.id_rubricas)">
+                
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-success" (click)="editRubrica()">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                
+              </button>
+            </td>
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

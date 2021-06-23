@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-body">
+        <button class="btn btn-primary"  [routerLink] = "['/rubricas', proyecto.id_proyecto]" >Registrar Rúbrica</button>
+        <br>
+        <br>
+        <h4>Lider : </h4>
+        <p>{{proyecto.lider}}</p>
+        <h4>Ciclo : </h4>
+        <p>{{proyecto.ciclo}}</p>
+        
+        <button  (click) = "confirmStateToggleCurso()"  class="btn btn-primary mb-2" [disabled]="loader">
+            <i *ngIf="loader" class="fas fa-spinner fa-spin mr-2"></i>
+            Ver Detalles
+        </button>
+        
+        <div *ngIf="toggleCursos">
+            <ul *ngFor="let curso of cursos">
+                <h5>Docente Encargado y Curso</h5> 
+                <li>{{curso.docente}}</li>  
+                <li>{{curso.curso}}</li>   
+              
+            </ul>
+        </div>
+
+    </div>
+</div>

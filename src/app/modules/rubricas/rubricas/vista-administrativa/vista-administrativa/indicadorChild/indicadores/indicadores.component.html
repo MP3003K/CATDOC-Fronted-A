@@ -1,0 +1,12 @@
+
+
+
+<div  *ngFor="let indicador  of indicadores">
+<p >
+    {{indicador.nombre}}
+  
+</p>
+ 
+<app-niveles [indicador] = "indicador"></app-niveles>
+
+</div>

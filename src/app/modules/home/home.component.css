@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
+.color-upeu{
+    background-color: #7b1038;
+    color: white;
+}
+.color-upeu-letras{
+    color: #7b1038;
+}
+.cont{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.cardy{
+    border-radius: 9%;
+    height: 280px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5) /*soluciona herencia de opacidad*/
+}
+.card-title, .bi{
+    color: white;
+}
+body{
+    min-height: 110vh;
+    background-image: url(../../../assets/img/upeu.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+}
+body:before{
+    content: "";
+    width: 100%;
+    min-height: 120vh;  /* Aca si pasa algo raro con el sombreado del Home*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 0.5;
+    z-index: 0;
+}
+

@@ -1,0 +1,119 @@
+<div class="container adjust">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label  style="font-weight: bold;" for="inputState">Campus</label>
+      <select (change)="traerFacultad($event.target.value)" id="scampus" class="form-control" required>
+        <option value="" >Elegir...</option>
+        <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-5">
+      <label style="font-weight: bold;" for="inputState">Facultad</label>
+      <select (change)="traerEscuela($event.target.value)" id="sfac" class="form-control" required>
+        <option selected>Elegir...</option>
+        <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label style="font-weight: bold;" for="inputState">E.P.</label>
+      <select (change)="getIdunidad($event.target.value)" id="sesc" class="form-control" required>
+        <option selected>Elegir...</option>
+        <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
+      </select>
+    </div>
+    <div class="mt-3 col-md-2">
+      <button id="filtro" type="submit" class="btn color-filtro mt-3" (click)="filt()">Activar Filtros</button>
+    </div>
+  </div>
+  <!--Activar Cuando Esten Los Filtros-->
+  <section *ngIf="filtrado" class="mb-5">
+    <div class="container mt-3" style="max-width: 100%; flex-wrap:nowrap;" >
+      <table class="table tab mt-3">
+        <thead>
+          <tr class="pb-3">
+            <th style="width: 3%;" class="txt-cent">#</th>
+            <th style="width: 35%;">Nombre</th>
+            <th>Ciclos</th>
+            <th>Cursos</th>
+            <th>Creditos</th>
+            <th style="width: 2%;">Inicio</th>
+            <th style="width: 2%;">Termino</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plan of planes; let i = index" >
+            <td class="txt-cent"> {{i+1}} </td>
+            <td> {{plan.NOMBRE}} </td>
+            <td> {{plan.CICLOS}} </td>
+            <td> {{plan.CURSOS}} </td>
+            <td> {{plan.CREDITOS}} </td>
+            <td> {{plan.ANIO_INICIO}} </td>
+            <td> {{plan.ANIO_TERMINO}} </td>
+            <td>
+                <button class="btn btn-success" (click)="cargarPlan(plan.IDPLAN)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="delPlan(plan.IDPLAN)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="mt-3">
+      <form>
+        <div class="form-group">
+          <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+          <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+          <div class="container" style="display: flex;">
+            <input hidden [(ngModel)]="planModel.idplan" name="idplan" class="form-control">
+            <section class="col-md-7">
+              <label for="exampleInputEmail1">Nombre</label>
+              <input id="nombre" [(ngModel)]="planModel.nombre" name="nombre" class="form-control"  placeholder="Nombre del Plan">
+              <small id="emailHelp" class="form-text text-muted">Ejemplo: Plan 2025-1 EP - Campus.</small>
+            </section>
+            <section hidden class="col-md-2">
+              <label for="exampleInputEmail1">ID Unidad</label>
+              <input id="idunidad" [(ngModel)]="idunidad" value="idunidad" name="idunidad" class="form-control"  placeholder="Num ID" disabled>
+            </section>
+            <section class="col-md-2">
+              <label for="exampleInputEmail1">Ciclos</label>
+              <input id="ciclos" [(ngModel)]="planModel.ciclos" name="ciclos" class="form-control"  type="number" placeholder="#">
+            </section>
+            <section class="col-md-2">
+              <label for="exampleInputEmail1">Cursos</label>
+              <input id="cursos" [(ngModel)]="planModel.cursos" name="cursos" class="form-control"  type="number" placeholder="#">
+            </section>
+          </div>
+          <div class="container mt-3" style="display: flex;">
+            <section class="col-md-2">
+              <label for="exampleInputEmail1">Creditos</label>
+              <input id="creditos" [(ngModel)]="planModel.creditos" name="creditos" class="form-control"  type="number" placeholder="#">
+            </section>
+            <section class="col-md-3">
+              <label for="exampleInputEmail1">Fecha de Inicio</label>
+              <input id="anio_inicio" [(ngModel)]="planModel.anio_inicio" name="anio_inicio" class="form-control" placeholder="DD/MM/YYYY">
+              <small id="emailHelp" class="form-text text-muted">Ejemplo: 20/07/2022.</small>
+            </section>
+            <section class="col-md-3">
+              <label for="exampleInputEmail1">Fecha de Termino</label>
+              <input id="anio_termino" [(ngModel)]="planModel.anio_termino" name="anio_termino" class="form-control" placeholder="DD/MM/YYYY">
+              <small id="emailHelp" class="form-text text-muted">Ejemplo: 20/07/2022.</small>
+            </section>
+          </div>
+        </div>
+        <div style="display: flex" class="ml-4 mt-2">
+            <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelarup()" type="submit" class="btn color-cancel">Cancelar</button>
+        </div>
+      </form>
+    </div> <!--xd-->
+  </section>
+</div>

@@ -1,0 +1,13 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.content{
+    padding: 0;
+}
+@media (max-width: 1199px){
+    .content{
+        width: 100%;
+    }
+}

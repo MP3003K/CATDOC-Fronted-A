@@ -1,0 +1,59 @@
+<div class="container alinear">
+    <div class="mt-3 mr-3">
+      <form>
+          <div class="form-group">
+            <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+            <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+            <label for="exampleInputEmail1">Nombre</label>
+            <input hidden [(ngModel)]="ModuloModel.idmodulo" name="id_modulo" class="form-control">
+            <input [(ngModel)]="ModuloModel.nombremod" name="nombremod" class="form-control"  placeholder="Nombre de modulo">
+            <small id="emailHelp" class="form-text text-muted">Ejemplo: Planificación del Proceso De Evaluación</small>
+          </div>
+          <div style="display: flex">
+            <button *ngIf="showButtonAdd=='Si'" (click)="agregarModulo()"  id="create" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" (click)="editarModulo()" id="update" type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" (click)="cancelar()" id="cancelar"  type="submit" class="btn color-cancel">Cancelar</button>
+          </div>
+          <div>
+            <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
+          </div>
+      </form>
+    </div>
+  
+    <table class="table tab mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let x of modulos; let i = index" >
+          <td> {{i+1}} </td>
+          <td hidden > {{x.ID_MODULO}} </td>
+          <td> {{x.NOMBREMOD}} </td>
+          <td> {{x.ESTADO}} </td>
+          <td>
+              <button (click)="cargarModulo(x.ID_MODULO)" class="btn btn-success" >
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+          </td>
+          <td>
+              <button (click)="eliminarModulo(x.ID_MODULO)" class="btn btn-danger">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+  
+  
+  <div>
+    <br>
+    <br>
+  </div>
+  

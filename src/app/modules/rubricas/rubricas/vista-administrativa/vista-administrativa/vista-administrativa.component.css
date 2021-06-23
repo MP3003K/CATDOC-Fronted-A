@@ -1,0 +1,25 @@
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+   
+  }
+  
+  .col-xs-4{
+    border:solid 1px #CCCCCC;
+    margin-right:-1px;
+    margin-top: 50px;
+    padding:10px;
+    width: 250px;
+    height: 150px;
+  }
+  
+  .dark{
+    background:#EEEEEE
+  }

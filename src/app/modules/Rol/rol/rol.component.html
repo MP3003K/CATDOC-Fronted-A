@@ -1,0 +1,61 @@
+<div class="container alinear">
+    <div class="mt-3 mr-3">
+      <form>
+          <div class="form-group">
+            <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+            <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+            <label for="exampleInputEmail1">Nombre</label>
+            <input hidden [(ngModel)]="rolModel.idrol" name="id_rol" class="form-control">
+            <input [(ngModel)]="rolModel.nombre" name="nombre" class="form-control"  placeholder="Nombre de Persona">
+            <small id="emailHelp" class="form-text text-muted">Ejemplo: Docente</small>
+          </div>
+          <div style="display: flex">
+            <button *ngIf="showButtonAdd=='Si'" (click)="agregarRol()" id="create" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" (click)="editarRol()" id="update"  type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" (click)="cancelar()" id="cancelar" type="submit" class="btn color-cancel">Cancelar</button>
+          </div>
+          <div>
+            <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
+          </div>
+      </form>
+    </div>
+  
+    <table class="table tab mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th class="col">Estado</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let x of roles; let i = index" >
+          <td> {{i+1}} </td>
+          <td hidden > {{x.ID_ROL}} </td>
+          <td> {{x.NOMBRE}} </td>
+          <td> {{x.ESTADO}} </td>
+          <td>
+              <button (click)="cargarRol(x.ID_ROL)" class="btn btn-success">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+          </td>
+          <td>
+              <button (click)="eliminarRol(x.ID_ROL)" class="btn btn-danger" >
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+  
+  
+  <div>
+    <br>
+    <br>
+  </div>
+  

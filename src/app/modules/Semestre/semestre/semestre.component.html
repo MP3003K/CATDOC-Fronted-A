@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+                <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+                
+                <label for="exampleInputEmail1">Nombre:</label>
+                
+                <input hidden [(ngModel)]="semestreModel.id_semestre" name="id_semestre" class="form-control">
+                
+                <input id="nombre" [(ngModel)]="semestreModel.nombre" name="nombre" class="form-control"  placeholder="Nombre del Semestre">
+                
+                
+                <small id="emailHelp" class="form-text text-muted">Ejemplo: 2019-1.</small>
+              </div>
+              <div style="display: flex">
+                <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+                <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+                <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+              </div>
+              <div>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      <div class="col s5">
+        <table class="table">
+          <thead class="upeu">
+            <th class="white">N°</th>
+            <th class="white">Nombre</th>
+            <th class="white">Estado</th>
+            <th class="white">Editar</th>
+            <th class="white">Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of semestre; let indice = index">
+              <td>{{ indice + 1 }}</td>
+              <td>{{ i.NOMBRE }}</td>
+              <td>{{ i.ESTADO }}</td>
+              <td>
+                <button class="btn btn-success" (click)="cargarSemestre(i.ID_SEMESTRE)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="delSemestre(i.ID_SEMESTRE)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </td>
+             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

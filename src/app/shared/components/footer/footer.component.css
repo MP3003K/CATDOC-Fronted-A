@@ -1,0 +1,12 @@
+.footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #7b1038;
+    color: white;
+    height: 5%;
+    z-index: 5;
+}
+.container{
+    padding-left: 350px;
+}

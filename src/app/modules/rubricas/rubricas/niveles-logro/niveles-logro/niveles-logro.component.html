@@ -1,0 +1,105 @@
+ <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card" style="width: 18erm">
+          <h5 class="card-header">Registrar Niveles</h5>
+          <div class="card-body">
+            <label for="inputState">Información Del Criterio</label>
+            <div *ngFor="let criterio of infoCriterio">
+              <h6> Criterio :</h6>
+              <p>{{ criterio.nombre }}</p>
+              <h6> Peso Del Criterio :</h6>
+              <p>{{ criterio.peso }} %</p>
+            </div>
+            <form #tipoForm="ngForm" (ngSubmit)="addNivel(tipoForm)"> 
+              <br>
+              <input type="hidden" name="id_criterio" [(ngModel)]="id"/>
+           
+                      
+              
+               <label for="inputState">Seleccione Nivel</label>
+               <select
+               (change)="ChooseNivel($event.target.value)"
+               class="form-control"
+               id="inputState"
+               class="form-control"
+           
+                 id="inputState"
+                 class="form-control"
+               >
+           
+           
+                 <option selected>Elegir...</option>
+                 <option *ngFor="let nivel of Rubrica.niveles" [value] = "nivel.id_nivel">  {{ nivel.nombre }}   {{nivel.peso}} </option>
+               </select>
+            
+               <br>
+               <input type="hidden" name="id_nivel" [(ngModel)]="idnivel"/>
+          
+             <label for="inputState">Ingresar Descripción  : </label>
+                       <input
+                         type="text"
+                         matInput
+                         id="ng"
+                         placeholder="Criterio"
+                         name="descripcion"
+                         [(ngModel)]="Rubrica.selectedNivel.descripcion"
+                         class="form-control"
+                       />
+             <br>
+              <button mat-raised-button color="primary" class="btn btn-primary upeu" >
+               Guardar
+             </button>
+             </form>
+      
+        </div>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nivel</th>
+              <th>Peso</th>
+              <th>Descripción</th>
+              <th>Eliminar</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let niveles of nivel; let indice = index">
+              <td>{{ indice + 1 }}</td>
+              <td>{{ niveles.nombre }}</td>
+              <td>{{ niveles.peso }} </td>
+              <td>{{ niveles.descripcion}} </td>
+      
+              <td>
+                <button class="btn btn-danger" (click)="deleteNivel()">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-success" (click)="editNivel()">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+              </td>
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  

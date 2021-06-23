@@ -1,0 +1,26 @@
+
+
+<div  *ngFor="let rubrica of rubricas">
+ <h6>{{rubrica.curso}}</h6>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Indicador</th>
+      <th *ngFor="let niveles of nivelesAll">
+        {{niveles.nombre}}
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+    <app-indicadores  [rubrica]="rubrica"></app-indicadores>
+    
+     
+      
+    </tr>
+  </tbody>
+</table>
+</div>

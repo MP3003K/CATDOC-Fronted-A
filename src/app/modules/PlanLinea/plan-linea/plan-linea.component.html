@@ -1,0 +1,85 @@
+<div class="container adjust">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+          <label style="font-weight: bold;" for="inputState">Campus</label>
+          <select (change)="traerFacultad($event.target.value)" id="scampus" class="form-control" required>
+            <option value="" >Elegir...</option>
+            <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-5">
+          <label style="font-weight: bold;" for="inputState">Facultad</label>
+          <select (change)="traerEscuela($event.target.value)" id="sfac" class="form-control" required>
+            <option selected>Elegir...</option>
+            <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label style="font-weight: bold;" for="inputState">E.P.</label>
+          <select (change)="traerPlan($event.target.value)" id="sesc" class="form-control" required>
+            <option selected>Elegir...</option>
+            <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
+          </select>
+        </div>
+    </div>
+      <div class="form-row">
+          <div class="form-group col-md-5">
+          <label style="font-weight: bold;" for="inputState">Planes Académicos</label>
+          <select (change)="listarLineasxPlan($event.target.value)" id="splan" class="form-control" required>
+            <option >Elegir...</option>
+            <option *ngFor="let pl of planes" [value]="pl.IDPLAN">{{pl.NOMBRE}}</option>
+          </select>
+          </div>
+          <div class="mt-3 ml-3">
+          <button id="filtro" type="submit" class="btn color-filtro mt-3" (click)="filt()">Activar Filtros</button>
+      </div>
+    </div>
+      
+      <div *ngIf="filtrado" class="form-row" style="display: flex;">
+        <div class="mt-3 mr-3 formy">
+            <form>
+                <div class="form-group">
+                    <label style="font-weight: bold;" for="inputState">Lineas Académicas</label>
+                    <select (change)="obtenerId($event.target.value)" id="inputState" class="form-control">
+                      <option >Elegir...</option>
+                      <option *ngFor="let li of lineas" [value]="li.ID_LINEA">{{li.NOMBRE}}</option>
+                    </select>
+                </div>
+             <div style="display: flex">
+               <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+               <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+               <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+             </div>
+             <div>
+               <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
+             </div>
+         </form>
+       </div>
+       <div>
+        <table class="table tab mt-3">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of listadoLinea; let i = index" >
+                <td> {{i+1}} </td>
+                <td hidden> {{x.IDPLAN_L}} </td>
+                <td> {{x.NOMBRE}} </td>
+                <td>
+                    <button class="btn btn-danger" (click)="delPlanLinea(x.IDPLAN_L)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+       </div>
+        
+        
+      </div>
+      
+</div>

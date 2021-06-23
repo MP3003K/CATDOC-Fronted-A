@@ -1,0 +1,15 @@
+.color-add{
+    background-color: rgb(37, 84, 242);
+    color: white;
+}
+.color-up{
+    background-color: rgb(49, 199, 49);
+    color: white;
+}
+.color-cancel{
+    background-color: rgb(177, 43, 43);
+    color: white;
+}
+#nombre{
+    width: 700px;
+}

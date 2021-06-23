@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="inputState">Campus</label>
+        <select id="campus" (change)="traerFacultad($event.target.value)" id="inputState" class="form-control" required>
+          <option value="" >Elegir...</option>
+          <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Facultad</label>
+        <select id="fac" (change)="traerEscuela($event.target.value)" id="inputState" class="form-control" required>
+          <option selected>Elegir...</option>
+          <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputState">E.P.</label>
+        <select id="ep" (change)="traerPlan($event.target.value)" id="inputState" class="form-control" required>
+          <option selected>Elegir...</option>
+          <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
+        </select>
+      </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="inputState">Planes Académicos</label>
+          <select id="plan" (change)="traerLinea($event.target.value)" class="form-control">
+              <option >Elegir...</option>
+              <option *ngFor="let pl of planes" [value]="pl.IDPLAN">{{pl.NOMBRE}}</option>
+          </select>
+      </div>
+      <div class="form-group col-md-3">
+          <label for="inputState">Líneas Académicas</label>
+          <select (change)="getCompetencia($event.target.value)" id="lin" class="form-control" >
+              <option >Elegir...</option>
+              <option *ngFor="let li of lineas" [value]="li.IDPLAN_L">{{li.NOMBRE}}</option>
+          </select>
+      </div>
+  </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+                <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+                
+                <label for="exampleInputEmail1">Nombre:</label>
+                
+                <input id="nombre" [(ngModel)]="competenciaModel.nombre" name="nombre" class="form-control"  placeholder="Nombre de la Competencia" >
+                
+                <label for="exampleInputEmail1">Descripción:</label>
+
+                <textarea [(ngModel)]="competenciaModel.descripcion"  name="descripcion" class="form-control mb-2 resize" placeholder="Ingrese Texto"></textarea>
+                
+               
+                <section class="form-group" style="display: flex;">
+                  <label class="mt-2" for="exampleInputEmail1">Tipo:</label>
+                  <select (change)="obtenerTipo($event.target.value)" id="tipos" name="tipo" class="form-control ml-2" aria-label="Default select example" >
+                      <option selected>Seleccione el Tipo</option>
+                  </select>
+                </section>
+               
+
+          
+
+                <small id="emailHelp" class="form-text text-muted">Ejemplo: 2019-1.</small>
+              </div>
+              <div style="display: flex">
+                <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+                <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+                <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+              </div>
+              <div>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 col s5">
+        <table class="table">
+          <thead class="upeu">
+            <th class="white">N°</th>
+            <th class="white">Nombre</th>
+            <th class="white">Descripción</th>
+            <th class="white">Tipo</th>
+            <th class="white">Estado</th>
+            <th class="white">Editar</th>
+            <th class="white">Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of competencia; let indice = index">
+              <td>{{ indice + 1 }}</td>
+              <td>{{ i.NOMBRE }}</td>
+              <td>
+               <button class="btn btn-info" (click)="mostrarDesc(indice)">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+               </button>
+              </td>
+              <td>{{ i.TIPO }}</td>
+              <td>{{ i.ESTADO }}</td>
+              <td>
+                <button class="btn btn-success" (click)="cargarCompetencia(i.IDCOMP)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="delCompetencia(i.IDCOMP)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </td>
+             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

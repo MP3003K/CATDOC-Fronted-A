@@ -1,0 +1,54 @@
+<div class="page-content d-flex align-items-stretch" *ngIf="authService.isAuthenticated()">
+  <!-- Side Navbar -->
+  <nav class="side-navbar">
+    <!-- Sidebar Header-->
+    <div class="sidebar-header d-flex align-items-center">
+      <div class="avatar"><img src="../../../../assets/img/andssuologo.png" alt="..." class="img-fluid rounded-circle">
+      </div>
+      <div class="title pl-2">
+        <h1 class="h5"> {{authService.usuario.username}} </h1>
+        <p> {{authService.usuario.roles}} </p>
+      </div>
+    </div>
+    <!-- Sidebar Navidation Menus--><span class="heading">Home</span>
+    <ul class="list-unstyled">
+      <li *ngIf="isComision()"><a [routerLink]="['/']"> <i class="fa fa-home"></i>Home </a></li>
+
+      <li *ngIf="isLider()"><a [routerLink]="['/dashl']"> <i class="fa fa-home"></i>Home </a></li>
+      <li *ngIf="isHome()"><a> <i class="fa fa-wrench"></i>Configuración</a></li>
+      <li *ngIf="isModConf()"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
+            class="fa fa-bar-chart"></i>CRUDs</a>
+        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+          <li *ngIf="isAdiminstrador()" ><a [routerLink]="['/tipo']">Tipo Unidad Académica</a></li>
+          <li *ngIf="isAdiminstrador()" ><a [routerLink]="['/unidad']">Unidad Académica</a></li>
+          <li *ngIf="isComision()"><a [routerLink]="['/moduloconfig/planes']">Plan Académico</a></li>
+          <li *ngIf="isComision()"><a [routerLink]="['/moduloconfig/lineas']">Linea Académica</a></li>
+          <li *ngIf="isComision()"><a [routerLink]="['/moduloconfig/planlineas']">Linea - Plan</a></li>
+          <li><a [routerLink]="['/moduloconfig/semestres']">Semestres</a></li>
+        </ul>
+      </li>
+      <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig/competencia']"> <i class=""></i>Competencias</a></li>
+      <li *ngIf="isModConf() && isComision()"><a [routerLink]="['/moduloconfig/competenciasniveles']"> <i class=""></i>Niveles Competencia</a></li> 
+      <li *ngIf="isModConf() && isComision()"><a [routerLink]="['/moduloconfig/competenciascursos']"> <i class=""></i>Competencias - Cursos</a></li>
+   
+      <!--Opciones del Módulo Planificación-->
+ 
+      <li *ngIf="isLider() && isModPlan()"><a [routerLink]="['/rubricas']"> <i class=""></i>Rubricas</a></li>
+
+      <!--Opciones del Módulo Seguridad-->
+    
+      <li *ngIf="isModSeg()"><a [routerLink]="['/moduloseg/persona']">Personas</a></li>
+      <li  *ngIf="isModSeg()"><a [routerLink]="['/moduloseg/roles']">Rol</a></li>
+      <li  *ngIf="isModSeg()"><a [routerLink]="['/moduloseg/modulos']">Modulo</a></li>
+      <li *ngIf="isHome()"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
+            class="icon-interface-windows"></i>Not Available </a>
+        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+          <li><a href="#">Page</a></li>
+          <li><a href="#">Page</a></li>
+          <li><a href="#">Page</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </nav>
+</div>

@@ -1,0 +1,51 @@
+.adjust{
+    padding-left: 3em;
+    padding-top: 3em;
+    width: 100%;
+}
+.color-upeu{
+    background-color: #7b1038;
+    color: white;
+}
+.tab{
+    max-width: 1300px;
+    min-width: 500px;
+}
+.formy{
+    padding-right: 50px;
+}
+.txt-cent{
+    text-align: center;
+}
+.color-upeu-letras{
+    color: #7b1038;
+}
+.color-add{
+    background-color: rgb(37, 84, 242);
+    color: white;
+}
+.color-up{
+    background-color: rgb(49, 199, 49);
+    color: white;
+}
+.color-cancel{
+    background-color: rgb(177, 43, 43);
+    color: white;
+}
+.color-filtro{
+    background-color: #272525;
+    color: white;
+}
+#scampus{
+    min-width: 9em;
+    margin-right: 26em;
+}
+#sfac{
+    min-width: 11em;
+}
+#sesc{
+    min-width: 9em;
+}
+#filtro{
+    min-width: 8em;
+}

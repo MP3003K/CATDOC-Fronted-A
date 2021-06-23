@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
+.color-upeu{
+    background-color: #7b1038;
+    color: white;
+}
+.color-upeu-letras{
+    color: #ffffff;
+}
+.navbar{
+    background-color: white;
+    z-index: 3;
+}
+.img-user{
+    size: 2px
+}
+.menu{
+    max-width: 250px;
+}
+.info-user{
+    text-decoration: none;
+    color: black;
+}
+.navbar{
+    background-color: #7b1038;
+}
+
+.fondito{
+    width:100px;
+    height:100px;
+}

@@ -1,0 +1,47 @@
+.center{
+    display: flex;
+    justify-content: space-between;   
+     max-width: 1000px;
+
+}
+.color-upeu{
+    background-color: #7b1038;
+    color: white;
+}
+.color-upeu-letras{
+    color: #7b1038;
+}
+.tab{
+    max-width: 700px;
+}
+
+#nombre{
+    width: 300px;
+}
+.color-add{
+    background-color: rgb(37, 84, 242);
+    color: white;
+}
+.color-up{
+    background-color: rgb(49, 199, 49);
+    color: white;
+}
+.color-cancel{
+    background-color: rgb(177, 43, 43);
+    color: white;
+}
+
+
+.upeu{
+    
+    background-color: #7b1038;
+}
+.btn-upeu{
+    background-color: #7b1038;
+}
+.white{
+    color: white;
+}
+.container{
+    margin-top: 25px;
+}

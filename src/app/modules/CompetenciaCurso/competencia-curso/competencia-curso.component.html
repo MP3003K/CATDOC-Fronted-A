@@ -1,0 +1,110 @@
+<div class="container adjust">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="inputState">Campus</label>
+              <select id="scampus" (change)="traerFacultad($event.target.value)" class="form-control">
+                <option value="" >Elegir...</option>
+                <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Facultad</label>
+              <select id="sfac" (change)="traerEscuela($event.target.value)" class="form-control">
+                <option selected>Elegir...</option>
+                <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputState">E.P.</label>
+              <select id="sesc" (change)="traerPlan($event.target.value)" class="form-control">
+                <option selected>Elegir...</option>
+                <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
+              </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputState">Planes Académicos</label>
+                <select id="splan"  (change)="traerLinea($event.target.value)" class="form-control">
+                    <option >Elegir...</option>
+                    <option *ngFor="let pl of planes" [value]="pl.IDPLAN">{{pl.NOMBRE}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputState">Líneas Académicas</label>
+                <select id="slinea" (change)="traerCompetencia($event.target.value)" class="form-control" >
+                    <option >Elegir...</option>
+                    <option *ngFor="let li of lineas" [value]="li.IDPLAN_L">{{li.NOMBRE}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputState">Competencias</label>
+              <select id="scomp" (change)="listarNivelesCompetencias($event.target.value)" class="form-control" >
+                  <option >Elegir...</option>
+                  <option *ngFor="let cmp of comps" [value]="cmp.IDCOMP">{{cmp.NOMBRE}}</option>
+              </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputState" style="font-weight: bold;">Niveles</label>
+            <select id="niv" (change)="listadoTabla($event.target.value)" class="form-control" >
+                <option >Elegir...</option>
+                <option *ngFor="let nv of niveles" [value]="nv.IDCOMP_N">{{nv.NIVEL}}</option>
+            </select>
+          </div>
+            <div class="mt-3 ml-3">
+                <button id="filtro" type="submit" (click)="filt()" class="btn color-filtro mt-3" >Activar Filtros</button>
+            </div>
+      </div>
+
+    <section *ngIf="filtrado">
+      <div class="box1 mt-3"></div>
+      <section style="display: flex;" class="mb-5 mt-3 mr-5">
+          <div class="col-md-6">
+            <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+            <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+            <div *ngIf="showButtonAdd=='Si'" class="form-group">
+              <label> Cursos del Plan </label>
+              <select (change)="obtenerIdcursoplan($event.target.value)" class="form-control">
+                <option selected>Elige...</option>
+                <option *ngFor="let c of cursos" [value]="c.ID_CURSO_PLAN"> {{c.NOMBRE}} </option>
+              </select>
+            </div>
+            <div style="display: flex">
+              <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+              <button *ngIf="showButtonsUpdate=='Si'" id="update" type="submit" class="btn color-up mr-2">Actualizar</button>
+              <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+            </div>
+          </div>
+          
+          <table class="table tab mt-3 col-md-5">
+              <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+              <tbody>
+                  <tr *ngFor="let x of competenciasCursos; let i = index" >
+                      <td> {{i+1}} </td>
+                      <td> {{x.CURSO}} </td>
+                      <td hidden> {{x.COMPETENCIA}} </td>
+                      <td hidden> {{x.NIVEL}} </td>
+                      <td>
+                          <button class="btn btn-success">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                          </button>
+                      </td>
+                      <td>
+                          <button class="btn btn-danger" (click)="delete(x.IDCOMP_C)">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </button>
+                      </td>
+                    </tr>
+              </tbody>
+          </table>
+      </section>
+    </section>
+   
+</div>

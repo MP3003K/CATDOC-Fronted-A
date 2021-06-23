@@ -1,0 +1,28 @@
+<div class="container center">
+  <div class="card" style="width: 18rem;">
+      
+    <div class="card-body">          
+      <label for="inputState">Seleccione Semestre</label>
+      <select
+      (change)="getProyectos($event.target.value)"
+      class="form-control"
+      id="inputState"
+      class="form-control"
+
+        id="inputState"
+        class="form-control"
+      >
+        <option selected>Elegir...</option>
+        <option placeholder="CAMPUS" *ngFor="let semestre of Rubrica.semestre" [value] = "semestre.ID_SEMESTRE">  {{ semestre.NOMBRE }} </option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4 mt-3" *ngFor="let proyecto of proyectos">
+      <app-card-project [proyecto]="proyecto"></app-card-project>    
+    </div>
+  </div>
+   
+
+</div>

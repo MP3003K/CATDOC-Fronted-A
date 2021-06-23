@@ -1,0 +1,30 @@
+.alinear{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 2em;
+}
+.color-upeu{
+    background-color: #7b1038;
+    color: white;
+}
+.color-upeu-letras{
+    color: #7b1038;
+}
+
+#nombre{
+    width: 290px;
+}
+.color-add{
+    background-color: rgb(37, 84, 242);
+    color: white;
+}
+.color-up{
+    background-color: rgb(49, 199, 49);
+    color: white;
+}
+.color-cancel{
+    background-color: rgb(177, 43, 43);
+    color: white;
+}
+
+
